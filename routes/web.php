@@ -74,3 +74,20 @@ Route::get('/read_profile', function () {
     ];
     return $data;
 });
+
+Route::get('/update_profile', function () {
+    $user = User::find(2);
+
+    $data = [
+        'phone' => '170008',
+        'address'   => 'Jl. Aku Cinta Kamu'
+    ];
+    $user->profile()->update($data);
+
+    // $user->profile()->update([
+    //     'phone' => '129128127',
+    //     'address'   => 'Jl.Kasih Sayang'
+    // ]);
+
+    return $user;
+});
