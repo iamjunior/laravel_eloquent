@@ -123,3 +123,19 @@ Route::get('/create_post', function () {
 
     return 'success';
 });
+
+Route::get('/read_posts', function (){
+    $user = User::find(1);
+
+    $posts = $user->posts()->get();
+
+    foreach ($posts as $post){
+        $data[] = [
+            'name'  => $post->user->name,
+            'title' => $post->title,
+            'body'  => $post->body,
+        ];
+    }
+
+    return $data;
+});
