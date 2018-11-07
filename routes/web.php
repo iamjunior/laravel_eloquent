@@ -29,13 +29,21 @@ Route::get('/create_user', function (){
 });
 
 Route::get('/create_profile', function (){
-    $profile = Profile::create([
-        'user_id'   => 1,
-        'phone' => '32141323',
-        'address'   => 'Jl. Anggrek Selatan Raya 3'
+    // $profile = Profile::create([
+    //     'user_id'   => 1,
+    //     'phone' => '32141323',
+    //     'address'   => 'Jl. Anggrek Selatan Raya 3'
+    // ]);
+
+    // return $profile;
+    $user = User::find(1);
+
+    $user->profile()->create([
+        'phone' => '023483249',
+        'address'   => 'Jl. Raya Ku Juga Suka'
     ]);
 
-    return $profile;
+    return $user;
 });
 
 Route::get('/create_user_profile', function () {
@@ -88,6 +96,13 @@ Route::get('/update_profile', function () {
     //     'phone' => '129128127',
     //     'address'   => 'Jl.Kasih Sayang'
     // ]);
+
+    return $user;
+});
+
+Route::get('/delete_profile', function () {
+    $user = User::find(1);
+    $user->profile()->delete();
 
     return $user;
 });
