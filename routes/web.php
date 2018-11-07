@@ -106,3 +106,20 @@ Route::get('/delete_profile', function () {
 
     return $user;
 });
+
+Route::get('/create_post', function () {
+    // $user = User::create([
+    //     'name'  => 'Eful',
+    //     'email' => 'efull@mailo.com',
+    //     'password'  => bcrypt('password')
+    // ]);
+
+    $user = User::findOrFail(1);
+
+    $user->posts()->create([
+        'title' => 'Ini title dari Post Terbaru',
+        'body'  => 'Ini isi dari Body yang di coba lewat route Terbaru'
+    ]);
+
+    return 'success';
+});
