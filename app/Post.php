@@ -14,4 +14,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function Categoty()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
