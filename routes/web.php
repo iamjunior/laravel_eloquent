@@ -131,11 +131,24 @@ Route::get('/read_posts', function (){
 
     foreach ($posts as $post){
         $data[] = [
-            'name'  => $post->user->name,
-            'title' => $post->title,
-            'body'  => $post->body,
+            'name'      => $post->user->name,
+            'post_id'   => $post->id,
+            'title'     => $post->title,
+            'body'      => $post->body,
         ];
     }
 
     return $data;
+});
+
+Route::get('/update_post', function(){
+    $user = User::findOrFail(1);
+
+    // $user->posts()->whereId(1)->update([
+    $user->posts()->where('id',2)->update([
+        'title' => 'ini isian title post update 2',
+        'body'  => 'Ini isian body post yang sudah di update 2'
+    ]);
+
+    return 'Success';
 });
