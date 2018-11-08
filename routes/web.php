@@ -109,17 +109,17 @@ Route::get('/delete_profile', function () {
 });
 
 Route::get('/create_post', function () {
-    // $user = User::create([
-    //     'name'  => 'Lufimu',
-    //     'email' => 'lufimu@mailo.com',
-    //     'password'  => bcrypt('password')
-    // ]);
+    $user = User::create([
+        'name'  => 'MyLufi',
+        'email' => 'mylufi@mailo.com',
+        'password'  => bcrypt('password')
+    ]);
 
-    $user = User::findOrFail(1);
+    // $user = User::findOrFail(1);
 
     $user->posts()->create([
-        'title' => 'Ini title dari Post Terbaru',
-        'body'  => 'Ini isi dari Body yang di coba lewat route Terbaru'
+        'title' => 'Ini title dari Post Terbaru My Lufi',
+        'body'  => 'Ini isi dari Body yang di coba lewat route Terbaru My Lufi'
     ]);
 
     return 'success';
@@ -158,6 +158,33 @@ Route::get('/delete_post', function () {
     $user = User::find(2);
 
     $user->posts()->whereUserId(2)->delete();
+
+    return 'Success';
+});
+
+Route::get('/create_category', function () {
+    // $post = Post::findOrFail(1);
+
+    // $post->category()->create([
+    //     'slug'  => str_slug('PHP', '-'),
+    //     'category'  => 'PHP'
+    // ]);
+
+    // return 'Success';
+
+    $user = User::create([
+        'name'  => 'Efull',
+        'email' => 'effulll@sumail.com',
+        'password'  => bcrypt('password')
+    ]);
+
+    $user->posts()->create([
+        'title' => 'New Title',
+        'body'  => 'New Body Content Coba Lah'
+    ])->category()->create([
+        'slug'  => str_slug('Kategori Baru', '-'),
+        'category' => 'New Category'
+    ]);
 
     return 'Success';
 });
