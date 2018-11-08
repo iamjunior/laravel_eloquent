@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 use App\User;
 use App\Profile;
+use App\Post;
 
 Route::get('/create_user', function (){
     $user = User::create([
@@ -109,8 +110,8 @@ Route::get('/delete_profile', function () {
 
 Route::get('/create_post', function () {
     // $user = User::create([
-    //     'name'  => 'Eful',
-    //     'email' => 'efull@mailo.com',
+    //     'name'  => 'Lufimu',
+    //     'email' => 'lufimu@mailo.com',
     //     'password'  => bcrypt('password')
     // ]);
 
@@ -149,6 +150,14 @@ Route::get('/update_post', function(){
         'title' => 'ini isian title post update 2',
         'body'  => 'Ini isian body post yang sudah di update 2'
     ]);
+
+    return 'Success';
+});
+
+Route::get('/delete_post', function () {
+    $user = User::find(2);
+
+    $user->posts()->whereUserId(2)->delete();
 
     return 'Success';
 });
