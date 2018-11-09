@@ -18,6 +18,7 @@ Route::get('/', function () {
 use App\User;
 use App\Profile;
 use App\Post;
+use App\Category;
 
 Route::get('/create_user', function (){
     $user = User::create([
@@ -185,6 +186,32 @@ Route::get('/create_category', function () {
         'slug'  => str_slug('Kategori Baru', '-'),
         'category' => 'New Category'
     ]);
+
+    return 'Success';
+});
+
+Route::get('/read_category', function () {
+    // $post = Post::find(1);
+
+    // $categories = $post->category->where('id',1);
+
+    // foreach($categories as $cat){
+    //     echo $cat->slug. '</br>';
+    // }
+
+    $category = Category::find(3);
+
+    $posts = $category->posts;
+
+    foreach($posts as $post) {
+        echo $post->title. '</br>';
+    }
+});
+
+
+Route::get('/attach', function () {
+    $post = Post::find(3);
+    $post->category()->attach([1,2,3]);
 
     return 'Success';
 });
