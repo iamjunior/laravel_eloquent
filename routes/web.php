@@ -222,3 +222,10 @@ Route::get('/detach', function () {
 
     return 'Success';
 });
+
+Route::get('/sync', function () {
+    $post = Post::find(3);
+    $post->category()->detach([1,2]);
+
+    return 'Success';
+});
