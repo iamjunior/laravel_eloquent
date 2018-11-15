@@ -215,3 +215,10 @@ Route::get('/attach', function () {
 
     return 'Success';
 });
+
+Route::get('/detach', function () {
+    $post = Post::find(3);
+    $post->category()->detach([1,2]); //jika array / variable dikosongkan, maka akan menghapus semua data berdasatkan post_id
+
+    return 'Success';
+});
